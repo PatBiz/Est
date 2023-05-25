@@ -37,5 +37,4 @@ def initialize_import () :
     sys.path.append(f'{mainPATH}{slash}gui')        #On ajoute le path pour le package 'gui'
 
 
-
 initialize_import()

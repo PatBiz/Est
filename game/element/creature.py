@@ -4,7 +4,7 @@
 from typing import Optional
 
 #Modules persos :
-import game.Game as Gme
+import game._game as Gme
 from .elem import Element
 from .equipment import Equipment
 
@@ -16,6 +16,7 @@ from utils import statically_typed_function
 #-------------------------------------------------------------------------------
 #                               CREATURE ELEMENT
 #-------------------------------------------------------------------------------
+
 
 class Creature (Element) : #Classe abstraite
     def __init__ (self, name:str, hp:int, abbrv:Optional[str]=None, strength:Optional[int]=1) :

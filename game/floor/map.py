@@ -5,7 +5,7 @@ from typing import Optional
 import random as rd
 
 # Modules persos :
-import game.Game as Gme
+import game._game as Gme
 from .coord import Coord
 from .room import Room
 import element as Elmt
@@ -13,9 +13,12 @@ import element as Elmt
 from utils import statically_typed_function , getch
 
 
-#--------------------------------------------------------------------------------------------
-#                                           MAP
-#--------------------------------------------------------------------------------------------
+#********************************** Classes : **********************************
+
+#-------------------------------------------------------------------------------
+#                                     MAP
+#-------------------------------------------------------------------------------
+
 
 class Map :
 

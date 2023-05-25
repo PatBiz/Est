@@ -4,7 +4,7 @@
 import random as rd
 
 #Module perso :
-import game.Game as Gme
+import game._game as Gme
 from .creature import Creature
 
 

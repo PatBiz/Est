@@ -4,7 +4,7 @@
 from typing import Optional
 
 # Modules persos :
-import game.Game as Gme
+import game._game as Gme
 from .elem import Element
 
 
@@ -13,6 +13,7 @@ from .elem import Element
 #-------------------------------------------------------------------------------
 #                               EQUIPMENT ELEMENT
 #-------------------------------------------------------------------------------
+
 
 class Item (Element) : #Classe abstraite
     def __init__ (self, name, abbrv) :

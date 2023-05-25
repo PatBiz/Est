@@ -13,13 +13,14 @@ import floor as Flr
 from utils import getch
 
 
-#--------------------------------------------------------------------------------------------
-#                                          GAME
-#--------------------------------------------------------------------------------------------
+#********************************** Classes : **********************************
 
-__all__ = ('theGame',) #Car on ne veut pas créer d'autre instance de Game (theGame est un singleton)
+#-------------------------------------------------------------------------------
+#                                    GAME
+#-------------------------------------------------------------------------------
 
-class Game() :
+
+class _Game() :
     equipments = {0: [ Elmt.Equipment("potion","!",usage=Elmt.heal), Elmt.Equipment("gold","o") ],
                   1: [ Elmt.Equipment("sword"), Elmt.Equipment("bow"), Elmt.Equipment("potion","!",usage=lambda hero : Elmt.teleport(hero , unique = True)) ],
                   2: [ Elmt.Equipment("chainmail") ],
@@ -35,7 +36,7 @@ class Game() :
         'd' : lambda hero : theGame()._floor.moveHero(hero , Coord(1,0))    ,
         'q' : lambda hero : theGame()._floor.moveHero(hero , Coord(-1,0))   ,
         ' ' : lambda hero : theGame()._floor.moveHero(hero , Coord(0,0))    ,
-        'u' : lambda hero : hero.use(Game.select(hero._inventory))      ,
+        'u' : lambda hero : hero.use(_Game.select(hero._inventory))      ,
         'i' : lambda hero : theGame().addMessage(hero.fullDescription()),
         'k' : lambda hero : hero.__setattr__('_hp' , 0)
     }
@@ -68,10 +69,10 @@ class Game() :
         return copy(rd.choice(collection[rarityMax]))
 
     def randEquipment (self) :
-        return self.randElement(Game.equipments)
+        return self.randElement(_Game.equipments)
 
     def randMonster (self) :
-        return self.randElement(Game.monsters)
+        return self.randElement(_Game.monsters)
     
     @staticmethod
     def select(l) :
@@ -92,11 +93,13 @@ class Game() :
             print(self._hero.description())
             print(self.readMessages())
             c = getch()
-            if c in Game._actions:
-                Game._actions[c](self._hero)
+            if c in _Game._actions:
+                _Game._actions[c](self._hero)
             self._floor.moveAllMonsters()
         print("--- Game Over ---")
 
 
-def theGame(game = Game()):
+#********************************* Singleton : *********************************
+
+def theGame(game = _Game()):
     return game

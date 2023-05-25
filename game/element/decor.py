@@ -4,7 +4,7 @@
 from typing import Optional
 
 # Modules persos :
-import game.Game as Gme
+import game._game as Gme
 from .elem import Element
 from . import creature as Crtr
 
