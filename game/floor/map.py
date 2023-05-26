@@ -8,9 +8,9 @@ import random as rd
 import game._game as Gme
 from .coord import Coord
 from .room import Room
-import element as Elmt
+import element as Elmt #Obligé de l'importer ainsi car 'element' a besoin de 'game' qui lui même a besoin de 'map' => "circular import"
 
-from utils import statically_typed_function , getch
+from utils import statically_typed_function
 
 
 #********************************** Classes : **********************************
@@ -259,7 +259,7 @@ class Map :
 
     def reach (self) :
         """Relie 2 salle ALEATOIREMENT"""
-        
+
         A = rd.choice(self._rooms)
         B = rd.choice(self._roomsToReach)
         self.corridor (A.center() , B.center())
@@ -277,7 +277,7 @@ class Map :
                 #Place des murs autour de 'c' dans les cases vides
                 for c2 in [Coord(c.x+1,c.y), Coord(c.x+1,c.y+1), Coord(c.x+1,c.y-1), Coord(c.x-1,c.y), Coord(c.x-1,c.y+1), Coord(c.x-1,c.y-1),  Coord(c.x,c.y+1), Coord(c.x,c.y-1)] :
                     if c2 in self  and  self[c2] == Map.empty :
-                        self._mat[c2.y][c2.x] = Elmt.Wall() #Je ne le met pas dans le dico _elem car c'est une Element qui peut être pluriel
+                        self._mat[c2.y][c2.x] = Elmt.Wall() #Je ne le met pas dans le dico _elem car il y en a plusieurs ET ça sert à rien
 
     # --- Plaçage des créatures ---
 
@@ -287,10 +287,7 @@ class Map :
         Ancien emplacement : classe 'Room'
         """
         c = r.randCoord()
-        # Possibilité moins bien :
-        #     while c in self._elem.items() or c==r.center() :
-
-        while self.get_Elmt_At_Coord(c) is not Map.ground or c==r.center():
+        while self.get_Elmt_At_Coord(c) is not Map.ground  or  c==r.center():
             c = r.randCoord()
         return c
 

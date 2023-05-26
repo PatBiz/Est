@@ -55,7 +55,7 @@ class Hero (Creature) :
                   inventory: Optional[list] = None) :
         Creature.__init__(self, name, hp, abbrv, strength)
         self._inventory = inventory or []
-        
+
     def description (self) :
         return f'<{self._name}>({self._hp}){self._inventory}'
 
@@ -67,7 +67,7 @@ class Hero (Creature) :
             s += f"> {attr[1:] if attr[0]=='_' else attr} : {attrValue}\n"
         s += f"> INVENTORY : {[i._name for i in self.__dict__['_inventory']]}"
         return s
-    
+
     @statically_typed_function
     def take (self, item:Equipment) :
         self._inventory.append(item)
