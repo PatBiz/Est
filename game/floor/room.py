@@ -18,7 +18,6 @@ class Room :
 
     # ¤¤¤¤¤¤¤¤¤¤¤¤¤¤ DUNDERS ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤ #
     def __init__ ( self, c1, c2 ) :
-
         self.c1 = Coord(min(c1.x , c2.x) , min(c1.y , c2.y)) #¤#
         self.c2 = Coord(max(c1.x , c2.x) , max(c1.y , c2.y))
 
@@ -28,8 +27,7 @@ class Room :
     def __contains__ (self, o) :
         if isinstance(o , Coord) :
             return (self.c1.x <= o.x <= self.c2.x) and (self.c1.y <= o.y <= self.c2.y) #¤#
-        else :
-            return False
+        return False
 
 
     # ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤ TOOLS ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤ #
