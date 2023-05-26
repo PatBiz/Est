@@ -277,7 +277,7 @@ class Map :
                 #Place des murs autour de 'c' dans les cases vides
                 for c2 in [Coord(c.x+1,c.y), Coord(c.x+1,c.y+1), Coord(c.x+1,c.y-1), Coord(c.x-1,c.y), Coord(c.x-1,c.y+1), Coord(c.x-1,c.y-1),  Coord(c.x,c.y+1), Coord(c.x,c.y-1)] :
                     if c2 in self  and  self[c2] == Map.empty :
-                        self._mat[c2.y][c2.x] = Elmt.Wall() #Je ne le met pas dans le dico _elem car il y en a plusieurs ET ça sert à rien
+                        self._mat[c2.y][c2.x] = Map.wall
 
     # --- Plaçage des créatures ---
 
@@ -313,7 +313,7 @@ class Map :
 
             dest = orig + self[monster].direction(self[self._hero])
 
-            if (dest in self) and (self[dest] != Map.empty) :
+            if (dest in self) and (self[dest] != Map.wall) :
                 if self.get(dest) == Map.ground:
                     self[monster] = dest
                 elif Elmt.meet(monster, self[dest]) :
@@ -328,7 +328,7 @@ class Map :
                 self.remove_Elmt_At_Coord(ec)       #On vide l'ancien emplacement
                 self.put_Elmt_At_Coord(e , nc)      #On déplace 'e' en 'nc'
 
-            elif self[nc] == Map.empty :
+            elif self[nc] == Map.wall :
                 return
 
             elif Elmt.meet(self._hero, self[nc]) :

@@ -24,15 +24,6 @@ class FixedElement (Element) : #Classe abstraite
         raise NotImplementedError
 
 
-class Wall (FixedElement) :
-    def __init__ (self , name: Optional[str] = 'Obstacle') :
-        FixedElement.__init__(self, name, '#')
-
-    @staticmethod
-    def action () : # Ne fait rien
-        return
-
-
 class Stairs (FixedElement) :
     def __init__ (self , name: Optional[str] = 'Stairs') :
         FixedElement.__init__(self, name, 'E')
@@ -42,12 +33,12 @@ class Stairs (FixedElement) :
         G = Gme.theGame() #Optimise le code en réduisant le nmbre d'appel
         G._level += 1
         G.buildFloor()
-        G.addMessage(f"The {G.hero._name} goes down")
+        G.addMessage(f"The {G._hero._name} goes down")
 
 
 class Chest (FixedElement) :
-    def __init__ (self , name: Optional[str] = 'Stairs') :
-        FixedElement.__init__(self, name, 'E')
+    def __init__ (self , name: Optional[str] = 'Chest') :
+        FixedElement.__init__(self, name, 'm')
 
     @staticmethod
     def action () :
